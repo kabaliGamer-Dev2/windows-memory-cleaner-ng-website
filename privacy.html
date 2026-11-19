@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy — Windows Memory Cleaner NG</title>
+    <meta name="description" content="What this website collects (very little), what the desktop application stores on your machine, and what neither of them does." />
+    <link rel="canonical" href="https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/privacy.html" />
+    <meta name="theme-color" content="#08090b" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="assets/icon.png" sizes="any" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" data-stuck="true">
+      <div class="wrap nav__inner">
+        <a class="brand" href="index.html">
+          <img src="assets/icon-256.png" alt="" width="30" height="30" />
+          <span class="brand__name">Memory Cleaner<span>Next Generation</span></span>
+        </a>
+        <div class="nav__actions" style="margin-left: auto">
+          <a class="nav__github" href="index.html">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span>Back to site</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="legal">
+      <div class="wrap wrap--narrow">
+        <a class="legal__back" href="index.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          Back to the site
+        </a>
+
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="legal__meta">Last updated 19 November 2026</p>
+
+        <div class="legal__note">
+          <p>
+            <strong>These are two different things.</strong> This policy covers the <strong>website</strong>
+            you are reading and the <strong>desktop application</strong> separately. The application makes
+            no network connections at runtime and collects no telemetry. That statement applies to the
+            application. The website is hosted on GitHub Pages, which is a third-party service and does
+            log requests — that is described below, because it would be dishonest to leave it implied.
+          </p>
+        </div>
+
+        <h2>Part 1 — This website</h2>
+
+        <h3>Hosting logs</h3>
+        <p>
+          This site is served by GitHub Pages. When you load a page, GitHub's servers receive your IP
+          address, the page you requested, your browser's user agent and the time of the request, in the
+          same way any web server does. That is processed by GitHub under the
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>,
+          not by me. I do not receive those logs and cannot identify individual visitors from them.
+        </p>
+
+        <h3>Cookies</h3>
+        <p>This site sets no cookies.</p>
+
+        <h3>Analytics</h3>
+        <p>
+          There is no analytics of any kind: no Google Analytics, no self-hosted analytics, no counting
+          pixels, no session recording. I do not know how many people visit or which pages they read.
+        </p>
+
+        <h3>Third-party requests</h3>
+        <p>
+          The site loads no third-party scripts, stylesheets or fonts. The typeface is served from this
+          domain as a <code>.woff2</code> file, so no request goes to a font CDN and your IP address is
+          not shared with one. The only external destinations are links you choose to follow — to GitHub,
+          for example — and those are governed by their own policies.
+        </p>
+
+        <h3>Local storage</h3>
+        <p>This site uses no cookies, no <code>localStorage</code> and no <code>sessionStorage</code>.</p>
+
+        <h3>Downloads</h3>
+        <p>
+          If a release is published, download links point at GitHub release assets. Your download is
+          served by GitHub and is subject to their logging, not mine. The checksums published next to a
+          download let you verify the file yourself without trusting the transfer.
+        </p>
+
+        <h2>Part 2 — The desktop application</h2>
+
+        <h3>What it stores</h3>
+        <p>Everything the application writes stays on your machine, in one folder:</p>
+        <ul>
+          <li><code>settings.json</code> — your preferences, including any process exclusions you add;</li>
+          <li><code>history.json</code> — the record of past cleanup runs;</li>
+          <li><code>logs\application.log</code> — a diagnostic log, rotated at 2 MB.</li>
+        </ul>
+        <p>
+          These are plain files. You can read them, back them up or delete them. Deleting the folder
+          resets the application to defaults.
+        </p>
+
+        <h3>What it sends</h3>
+        <p>
+          Nothing. The application makes no network connections at runtime. It has no update check, no
+          crash reporting, no usage statistics and no licence server. You can confirm this with any
+          network monitor, or by reading the network section of the repository's security policy.
+        </p>
+
+        <h3>What it reads</h3>
+        <p>
+          It reads Windows memory counters and the list of running processes — that is what a memory
+          utility does. It also reads startup entries from the registry and the Startup folders when you
+          open the Startup Apps page. It does not read the contents of your documents, browser history,
+          clipboard or keystrokes.
+        </p>
+
+        <h3>Redaction</h3>
+        <p>
+          The log and the diagnostics export are redacted before they are written: a path such as
+          <code>C:\Users\&lt;name&gt;\AppData\...</code> becomes <code>%USERPROFILE%\AppData\...</code>,
+          and the machine and account names are replaced with placeholders. That means a log you attach
+          to a bug report does not identify you. The window shows “This device” and “Current user” instead
+          of the real names until you turn that off in Settings, so a screenshot or a screen share does
+          not carry them either.
+        </p>
+
+        <h3>The one registry write</h3>
+        <p>
+          If you enable <em>Start with Windows</em>, it writes a single value under
+          <code>HKCU\...\CurrentVersion\Run</code>. Turning the setting off removes it. Switching a
+          startup program off writes the same <code>StartupApproved</code> flag Windows itself uses; it
+          never deletes a startup command.
+        </p>
+
+        <h2>Part 3 — Your choices</h2>
+        <ul>
+          <li>Do not want the site to see your request? Use a proxy or a VPN — but GitHub still sees whatever reaches it.</li>
+          <li>Do not want the application to keep history? Lower the history depth in Settings, or delete the folder.</li>
+          <li>Do not want it starting with Windows? Leave that setting off; it is off by default.</li>
+        </ul>
+
+        <h2>Part 4 — Changes</h2>
+        <p>
+          If this policy changes, the date at the top changes with it. Material changes will be noted in
+          the project's changelog.
+        </p>
+
+        <h2>Part 5 — Contact</h2>
+        <p>
+          Privacy questions can be raised through the project's
+          <a href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.
+          Security reports should follow the
+          <a href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">security policy</a>
+          instead of a public issue.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer__base" style="margin-top: 0; border-top: 0">
+          <span>© 2026 Kabbali Gamer. All rights reserved.</span>
+          <span><a href="index.html">Home</a> · <a href="terms.html">Terms</a> · <a href="license.html">Licence &amp; credits</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

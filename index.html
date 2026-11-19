@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Windows Memory Cleaner NG — native Windows memory management</title>
+    <meta
+      name="description"
+      content="A native Windows utility that runs the system's own memory-management operations on demand and shows exactly what happened. Working sets, standby list, file cache, startup apps and automation. Free, proprietary, no telemetry."
+    />
+    <link rel="canonical" href="https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/" />
+    <meta name="theme-color" content="#08090b" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="author" content="Kabbali Gamer" />
+    <meta
+      name="keywords"
+      content="Windows memory cleaner, Windows RAM monitor, standby list, memory management utility, startup apps manager, Windows 11 memory"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Windows Memory Cleaner NG" />
+    <meta property="og:title" content="Windows Memory Cleaner NG — native Windows memory management" />
+    <meta
+      property="og:description"
+      content="Run specific Windows memory-management operations on demand, and see exactly what each one released. Eight pages, real measurements, no telemetry."
+    />
+    <meta property="og:url" content="https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/" />
+    <meta property="og:image" content="https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/assets/og-cover.jpg" />
+    <meta property="og:image:alt" content="The Windows Memory Cleaner NG dashboard showing memory in use, available, cached and committed." />
+    <meta property="og:locale" content="en" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Windows Memory Cleaner NG" />
+    <meta
+      name="twitter:description"
+      content="A native Windows utility for the system's own memory-management operations — with honest before-and-after measurement."
+    />
+    <meta name="twitter:image" content="https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/assets/og-cover.jpg" />
+
+    <link rel="icon" href="assets/icon.png" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/icon-256.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <link
+      rel="preload"
+      href="assets/fonts/dm-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Windows Memory Cleaner NG",
+        "alternateName": "Windows Memory Cleaner — Next Generation",
+        "applicationCategory": "UtilitiesApplication",
+        "applicationSubCategory": "System Utility",
+        "operatingSystem": "Windows 10, Windows 11",
+        "softwareVersion": "2.0.0",
+        "fileSize": "3.83MB",
+        "softwareRequirements": "Windows 10 (1809) or Windows 11, x64. Microsoft Edge WebView2 runtime.",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "author": {
+          "@type": "Person",
+          "name": "Kabbali Gamer"
+        },
+        "license": "https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/blob/main/LICENSE",
+        "url": "https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/",
+        "image": "https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/assets/og-cover.jpg",
+        "downloadUrl": "https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/releases/download/v2.0.0/WindowsMemoryCleanerNG_2.0.0_x64-setup.exe",
+        "description": "A native Windows utility that runs documented Windows memory-management operations on demand and measures what each one released."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does Windows Memory Cleaner NG actually do?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It asks Windows to perform specific memory-management operations on demand — trimming process working sets, clearing the standby list, flushing the modified page list and the file cache — and it measures memory before and after so you can see what each operation actually released."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it increase FPS or make games faster?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, and it does not claim to. Freeing memory does not add frames. Windows already keeps free RAM useful as a cache and refills it after a purge. What helps a game is enough physical RAM and fewer background programs, not a memory purge."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Windows already manage memory?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, and well. It caches aggressively because that makes programs launch faster, and standby memory is available to any program that asks for it. This application is a measuring instrument for specific operations, not a replacement for that management."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it terminate processes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The Processes page trims an individual process's working set — asking it to release memory it loaded but is not using. The process keeps running and reloads pages when it needs them. Nothing on this website or in the application terminates a process."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it need administrator privileges?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Monitoring, history, startup apps and trimming its own working set work as a normal user. The system-wide operations need an Administrator token. The application detects this, says so plainly and offers a Run as Administrator button instead of failing silently."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is automation on by default?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Automation is opt-in. You choose a memory threshold, a fixed interval or either, and nothing runs until you enable it. A cooldown and a hysteresis latch prevent repeated firing."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ================= NAVIGATION ================= -->
+    <header class="nav" id="nav">
+      <div class="wrap nav__inner">
+        <a class="brand" href="#top">
+          <img src="assets/icon-256.png" alt="" width="30" height="30" />
+          <span class="brand__name">
+            Memory Cleaner
+            <span>Next Generation</span>
+          </span>
+        </a>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#tour">Product tour</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a href="#download">Download</a>
+        </nav>
+
+        <div class="nav__actions">
+          <a
+            class="nav__github"
+            href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A7.995 7.995 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+              />
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <button
+            class="nav__toggle"
+            id="navToggle"
+            aria-expanded="false"
+            aria-controls="navMobile"
+            aria-label="Open menu"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav__mobile" id="navMobile" data-open="false">
+        <a href="#features">Features</a>
+        <a href="#tour">Product tour</a>
+        <a href="#how">How it works</a>
+        <a href="#automation">Automation</a>
+        <a href="#safety">Safety</a>
+        <a href="#faq">FAQ</a>
+        <a href="#download">Download</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <span id="top"></span>
+
+      <!-- ================= HERO ================= -->
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="wrap hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow">Native Windows utility</span>
+            <h1 id="heroTitle">
+              Know what is happening with <em>your memory</em>.
+            </h1>
+            <p class="hero__lede">
+              Run specific Windows memory-management operations on demand — working sets, the
+              standby list, the modified page list, the file cache — and see exactly what each one
+              released. No guessing, no inflated numbers.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/releases/download/v2.0.0/WindowsMemoryCleanerNG_2.0.0_x64-setup.exe" download>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Download for Windows
+              </a>
+              <a
+                class="btn btn--ghost"
+                href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A7.995 7.995 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+                </svg>
+                View on GitHub
+              </a>
+            </div>
+
+            <p class="hero__meta">
+              <span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                Version 2.0.0
+              </span>
+              <span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                Windows 10 &amp; 11 · x64
+              </span>
+              <span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                No telemetry
+              </span>
+            </p>
+          </div>
+
+          <div class="hero__window reveal">
+            <div class="window">
+              <div class="window__bar">
+                <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <span class="window__title">Windows Memory Cleaner NG — Memory Monitor</span>
+              </div>
+              <img
+                src="assets/shots/monitor.webp"
+                alt="The Memory Monitor page of Windows Memory Cleaner NG: a live physical-memory-load chart peaking at 76 percent, with used, available, cached, commit and kernel-pool figures measured at the same moment."
+                width="1280"
+                height="820"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+            <div class="chip chip--a">
+              <span class="chip__dot" aria-hidden="true"></span>
+              <span>Peak load</span>
+              <strong>76%</strong>
+            </div>
+            <div class="chip chip--b">
+              <span>Available</span>
+              <strong>3.57 GB</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VERIFIED NUMBERS ================= -->
+      <section class="strip" aria-label="The application in numbers">
+        <div class="wrap strip__grid">
+          <div class="strip__item">
+            <div class="strip__value">8</div>
+            <div class="strip__label">pages, each doing one job</div>
+          </div>
+          <div class="strip__item">
+            <div class="strip__value">8</div>
+            <div class="strip__label">memory operations exposed</div>
+          </div>
+          <div class="strip__item">
+            <div class="strip__value">0</div>
+            <div class="strip__label">network connections at runtime</div>
+          </div>
+          <div class="strip__item">
+            <div class="strip__value">0</div>
+            <div class="strip__label">processes ever terminated</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PRODUCT TOUR ================= -->
+      <section class="section" id="tour" aria-labelledby="tourTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">01</span>
+          <div class="section-head">
+            <span class="eyebrow">Product tour</span>
+            <h2 id="tourTitle">The whole machine on one page, then the detail when you need it</h2>
+            <p>
+              The dashboard answers one question — how much memory is actually available right now —
+              and tells you where the last number came from. Every other page goes one level deeper.
+            </p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Dashboard</span>
+                </div>
+                <img
+                  src="assets/shots/dashboard.webp"
+                  alt="Dashboard showing memory in use as a ring, a live availability chart, and separate figures for available, cached, committed and reclaimable memory."
+                  width="1280"
+                  height="820"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">Dashboard</span>
+              <h3>Six numbers that are not the same number</h3>
+              <p>
+                Total, used, available, standby, cached and committed are different measurements, and
+                conflating them is how memory tools end up lying. This page keeps them apart and labels
+                each one.
+              </p>
+              <ul class="feature__list">
+                <li>Memory in use, as Windows itself reports it</li>
+                <li>Available, cached and committed shown separately</li>
+                <li>The last run, with its trigger and duration</li>
+              </ul>
+              <p class="feature__note">
+                The red badge in this screenshot is a real failed run: the window was not elevated, so
+                the operations were refused. The application records that as a failure rather than
+                borrowing a number from something the system happened to do at the same moment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FEATURES ================= -->
+      <section class="section" id="features" aria-labelledby="featuresTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">02</span>
+          <div class="section-head">
+            <span class="eyebrow">Features</span>
+            <h2 id="featuresTitle">Eight pages. No filler on any of them.</h2>
+            <p>
+              Each screen exists because a specific question had no honest answer elsewhere: what is
+              cached, what is each process holding, what ran last night, and what starts without asking.
+            </p>
+          </div>
+
+          <!-- 1. Memory Cleaner -->
+          <div class="feature reveal">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Memory Cleaner</span>
+                </div>
+                <img src="assets/shots/cleaner.webp" alt="The Memory Cleaner page listing eight operations with checkboxes, a permission badge on each privileged operation, and a run bar showing the estimated reclaimable ceiling." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">01 — Memory Cleaner</span>
+              <h3>Pick the operation, not the magic button</h3>
+              <p>
+                Eight Windows memory operations, each one a documented API call with its own cost.
+                You choose which to run; the page shows which of them your current permission level
+                allows before you click anything.
+              </p>
+              <ul class="feature__list">
+                <li>Working sets · standby list · modified page list · file cache</li>
+                <li>Combined page list · registry cache · volume cache</li>
+                <li>A per-operation result, not one combined number</li>
+              </ul>
+              <p class="feature__note">
+                Some operations are marked disruptive. Flushing the file cache costs disk activity,
+                and the application says so rather than hiding it behind a single button.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. Memory Monitor -->
+          <div class="feature reveal" data-flip="true">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Memory Monitor</span>
+                </div>
+                <img src="assets/shots/monitor.webp" alt="The Memory Monitor page with live charts of memory load, available memory, cached memory and committed memory over time." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">02 — Memory Monitor</span>
+              <h3>Watch the trend, not a frozen percentage</h3>
+              <p>
+                A single number tells you nothing about direction. The monitor keeps a rolling window
+                of load, available, cached and committed memory so you can see whether the machine is
+                settling or climbing.
+              </p>
+              <ul class="feature__list">
+                <li>Four series, one time axis</li>
+                <li>Sampling interval you control</li>
+                <li>Charts drawn as plain SVG — no chart library loaded</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. Processes -->
+          <div class="feature reveal">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Processes</span>
+                </div>
+                <img src="assets/shots/processes.webp" alt="The Processes page listing running programs with their working set, private memory and process id, with a trim action on each row." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">03 — Processes</span>
+              <h3>Trim a working set. Never end a process.</h3>
+              <p>
+                Every row shows what a program is holding. Trimming asks that program to release the
+                memory it loaded but is not currently using — the pages come back the moment it needs
+                them, and the program keeps running.
+              </p>
+              <ul class="feature__list">
+                <li>Working set and private bytes per process</li>
+                <li>An exclusion list for anything you never want touched</li>
+                <li>No terminate action exists anywhere in the application</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. Automation -->
+          <div class="feature reveal" data-flip="true">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Automation</span>
+                </div>
+                <img src="assets/shots/automation.webp" alt="The Automation page showing an opt-in switch, a trigger mode selector, interval and threshold sliders with presets, and the operations automation will run." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">04 — Automation</span>
+              <h3>Off until you turn it on, and never a surprise</h3>
+              <p>
+                Automation runs the operations you selected when a threshold is crossed, on a fixed
+                interval, or on either — whichever comes first. A cooldown always applies, and a run
+                is skipped when your selected operations have almost nothing to release.
+              </p>
+              <ul class="feature__list">
+                <li>Threshold presets from 50 % to 90 %, or any value</li>
+                <li>Intervals from 15 minutes to 24 hours, or custom</li>
+                <li>Next run, last run, and the reason it last did nothing</li>
+              </ul>
+              <p class="feature__note">
+                Automatic cleaning needs Administrator rights. If the window is not elevated, the
+                application says so and offers the elevation instead of quietly recording failures.
+              </p>
+            </div>
+          </div>
+
+          <!-- 5. Activity -->
+          <div class="feature reveal">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Activity</span>
+                </div>
+                <img src="assets/shots/activity.webp" alt="The Activity page listing past cleanup runs with their trigger, duration and the result of each individual memory operation." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">05 — Activity</span>
+              <h3>A receipt for every run</h3>
+              <p>
+                Each entry records what triggered the run, how long it took and what each operation
+                returned. A failed run is stored as a failure — it does not inherit a number from
+                something the system happened to do at the same moment.
+              </p>
+              <ul class="feature__list">
+                <li>Trigger, duration and per-operation outcome</li>
+                <li>History depth you configure</li>
+                <li>Zero bytes means zero bytes</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 6. Startup Apps -->
+          <div class="feature reveal" data-flip="true">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Startup Apps</span>
+                </div>
+                <img src="assets/shots/startup.webp" alt="The Startup Apps page listing nineteen programs that start with Windows, each with a switch, its command path and where it is registered." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">06 — Startup Apps</span>
+              <h3>The only change here that lasts</h3>
+              <p>
+                Clearing memory is temporary by design — Windows refills the cache. A program that
+                starts with your session keeps running for as long as it runs. Turning it off is what
+                durably reduces what your machine loads at sign-in.
+              </p>
+              <ul class="feature__list">
+                <li>Reads both registry Run keys and both Startup folders</li>
+                <li>Per-user entries switch off reversibly — nothing is deleted</li>
+                <li>Machine-wide entries are listed but marked read-only</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 7. Settings -->
+          <div class="feature reveal">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Settings</span>
+                </div>
+                <img src="assets/shots/settings.webp" alt="The Settings page with appearance, monitoring, launch options including start with Windows and ask for administrator rights, exclusions, notifications and diagnostics." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">07 — Settings</span>
+              <h3>Everything written down, nothing guessed</h3>
+              <p>
+                Appearance, sampling interval, history depth, launch behaviour, process exclusions and
+                log level live here. Every setting persists to a readable JSON file you can inspect.
+              </p>
+              <ul class="feature__list">
+                <li>Start with Windows, or ask for Administrator rights at launch</li>
+                <li>Process exclusions matched case-insensitively</li>
+                <li>Diagnostics export for a bug report</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 8. Keyboard shortcuts -->
+          <div class="feature reveal" data-flip="true">
+            <div class="feature__media">
+              <div class="window">
+                <div class="window__bar">
+                  <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="window__title">Keyboard shortcuts</span>
+                </div>
+                <img src="assets/shots/automation.webp" alt="The keyboard shortcuts card, where the three global shortcuts can be changed or disabled." width="1280" height="796" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="feature__body">
+              <span class="feature__index">08 — Shortcuts</span>
+              <h3>Three keys, while the window is in the tray</h3>
+              <p>
+                Global shortcuts work when the application is minimised. They are configurable and can
+                be disabled, and a combination already owned by another program is reported rather than
+                silently ignored.
+              </p>
+              <ul class="feature__list">
+                <li><code>Ctrl + Alt + M</code> — run the configured operations now</li>
+                <li><code>Ctrl + Alt + P</code> — pause or resume automation</li>
+                <li><code>Ctrl + Alt + S</code> — bring the window to the front</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= HOW IT WORKS ================= -->
+      <section class="section" id="how" aria-labelledby="howTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">03</span>
+          <div class="section-head">
+            <span class="eyebrow">How it works</span>
+            <h2 id="howTitle">From download to a number you trust, in seven steps</h2>
+            <p>
+              No account, no wizard, no onboarding sequence. Install it, look at the dashboard, choose
+              what to run.
+            </p>
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <span class="step__num" aria-hidden="true">01</span>
+              <div class="step__body">
+                <h3>Download the application</h3>
+                <p>Take the installer if you want a Start Menu entry, or the portable file if you just want to run it.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">02</span>
+              <div class="step__body">
+                <h3>Install, or do not</h3>
+                <p>The installer works per-user and needs no administrator rights to install. The portable executable needs nothing at all.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">03</span>
+              <div class="step__body">
+                <h3>Open the dashboard</h3>
+                <p>Memory in use, available, cached and committed, live, with the pressure level Windows reports.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">04</span>
+              <div class="step__body">
+                <h3>Look before you act</h3>
+                <p>Check the monitor for a trend and the processes page to see who is actually holding memory.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">05</span>
+              <div class="step__body">
+                <h3>Select operations</h3>
+                <p>On the Memory Cleaner page, tick the operations you want. Anything that needs elevation is marked before you run it.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">06</span>
+              <div class="step__body">
+                <h3>Run them</h3>
+                <p>Press Run selected. If the selection needs Administrator rights, the button becomes Clean as Administrator and asks Windows for them.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step__num" aria-hidden="true">07</span>
+              <div class="step__body">
+                <h3>Read the result</h3>
+                <p>Each operation reports what it did. The run appears in Activity. If nothing was released, it says nothing was released.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ================= AUTOMATION ================= -->
+      <section class="section" id="automation" aria-labelledby="autoTitle">
+        <div class="wrap split">
+          <div>
+            <span class="eyebrow">Automation</span>
+            <h2 id="autoTitle" style="margin-top: 1rem; font-size: var(--step-3)">Set a rule once, then forget it</h2>
+            <p style="margin-top: 1.1rem; color: var(--text-2); font-size: var(--step-1); line-height: 1.5">
+              Automation is off by default. When you turn it on you choose what makes a run due, what
+              it is allowed to do, and how often at most.
+            </p>
+
+            <dl class="spec">
+              <div class="spec__row">
+                <dt class="spec__key">Triggers</dt>
+                <dd class="spec__val">Memory threshold, fixed interval, or either</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="spec__key">Threshold</dt>
+                <dd class="spec__val">Presets at <code>50</code>, <code>60</code>, <code>70</code>, <code>75</code>, <code>80</code>, <code>85</code>, <code>90</code> percent, or any value</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="spec__key">Interval</dt>
+                <dd class="spec__val"><code>15 m</code> to <code>24 h</code> in presets, or a custom period</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="spec__key">Cooldown</dt>
+                <dd class="spec__val">A minimum gap is always enforced between runs</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="spec__key">Hysteresis</dt>
+                <dd class="spec__val">After a run the trigger stays latched until load falls below the threshold again, so memory hovering at the limit cannot fire repeatedly</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="spec__key">Pause</dt>
+                <dd class="spec__val">Stop automatic runs without losing your configuration</dd>
+              </div>
+              <div class="spec__row">
+                <dt class="spec__key">Permissions</dt>
+                <dd class="spec__val">Needs Administrator. The page offers the elevation rather than failing quietly</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="reveal">
+            <div class="window">
+              <div class="window__bar">
+                <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <span class="window__title">Automation</span>
+              </div>
+              <img src="assets/shots/automation.webp" alt="Automation settings showing the opt-in switch, trigger modes, threshold and interval presets, cooldown, and the operations automation is allowed to run." width="1280" height="796" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SAFETY ================= -->
+      <section class="section" id="safety" aria-labelledby="safetyTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">04</span>
+          <div class="section-head">
+            <span class="eyebrow">Safety &amp; transparency</span>
+            <h2 id="safetyTitle">The list of things it will not do is longer than the list of things it will</h2>
+            <p>
+              A memory utility earns trust by its limits. These are the limits, and they are enforced in
+              the code rather than stated in a policy.
+            </p>
+          </div>
+
+          <div class="safety">
+            <div class="safety__col safety__col--does">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                What it does
+              </h3>
+              <ul>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  Measures memory before and after every run, and reports both
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  Asks Windows to release standby, cached and working-set memory
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  Lists startup programs and switches per-user ones off reversibly
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  Keeps a local history, a local log and a readable settings file
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  Writes one registry value, only if you enable start-with-Windows
+                </li>
+              </ul>
+            </div>
+
+            <div class="safety__col safety__col--does-not">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                What it does not do
+              </h3>
+              <ul>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                  Terminate processes, or close the programs you are running
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                  Touch the pagefile, SSD or TRIM settings, or firmware
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                  Disable Windows services, scheduled tasks, Defender, the firewall or Windows Update
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                  Connect to the network at runtime, or collect telemetry
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                  Promise a permanent speed-up. Windows refills the cache by design
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= GALLERY ================= -->
+      <section class="section" id="gallery" aria-labelledby="galleryTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">05</span>
+          <div class="section-head">
+            <span class="eyebrow">Screenshots</span>
+            <h2 id="galleryTitle">Every page, as it actually looks</h2>
+            <p>
+              Captured from the running application. Select any one to enlarge it.
+            </p>
+          </div>
+
+          <div class="gallery" id="gallery">
+            <button class="gallery__item" type="button" data-src="assets/shots/dashboard.webp" data-caption="Dashboard — memory in use, availability over time, and the last run">
+              <img src="assets/shots/dashboard.webp" alt="Dashboard page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Dashboard
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/cleaner.webp" data-caption="Memory Cleaner — eight operations with per-operation permission state">
+              <img src="assets/shots/cleaner.webp" alt="Memory Cleaner page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Memory Cleaner
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/monitor.webp" data-caption="Memory Monitor — load, available, cached and committed over time">
+              <img src="assets/shots/monitor.webp" alt="Memory Monitor page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Memory Monitor
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/processes.webp" data-caption="Processes — who is holding memory, with a per-process trim">
+              <img src="assets/shots/processes.webp" alt="Processes page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Processes
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/automation.webp" data-caption="Automation — opt-in triggers, presets, cooldown and pause">
+              <img src="assets/shots/automation.webp" alt="Automation page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Automation
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/activity.webp" data-caption="Activity — every run with its trigger, duration and per-operation result">
+              <img src="assets/shots/activity.webp" alt="Activity page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Activity
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/startup.webp" data-caption="Startup Apps — what Windows launches at sign-in, and reversible switches">
+              <img src="assets/shots/startup.webp" alt="Startup Apps page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Startup Apps
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+            <button class="gallery__item" type="button" data-src="assets/shots/settings.webp" data-caption="Settings — appearance, monitoring, launch behaviour, exclusions and diagnostics">
+              <img src="assets/shots/settings.webp" alt="Settings page" width="640" height="410" loading="lazy" decoding="async" />
+              <span class="gallery__cap">Settings
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DOWNLOAD ================= -->
+      <section class="section" id="download" aria-labelledby="downloadTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">06</span>
+          <div class="download">
+            <div class="download__inner">
+              <div>
+                <span class="eyebrow">Download</span>
+                <h2 id="downloadTitle" style="margin-top: 1rem">Get Windows Memory Cleaner NG</h2>
+                <p class="download__lede">
+                  Installer for a normal installation with Start Menu and desktop shortcuts, or a single
+                  portable file. Both run per-user; neither needs administrator rights to install.
+                </p>
+
+                <div class="download__state download__state--ok" id="downloadState" role="status">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span id="downloadStateText">
+                    Version 2.0.0 is published. Both files come from the project's GitHub release page,
+                    so the link starts the download directly — no sign-up, no interstitial, no mirror.
+                    Check the SHA-256 below if you want proof the file you got is the file that was built.
+                  </span>
+                </div>
+
+                <dl class="download__facts">
+                  <div class="fact">
+                    <dt>Version</dt>
+                    <dd>2.0.0</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Platform</dt>
+                    <dd>Windows 10 (1809) · Windows 11</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Architecture</dt>
+                    <dd>x64</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Requires</dt>
+                    <dd>WebView2 runtime</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Licence</dt>
+                    <dd>Proprietary — free to use</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Installer size</dt>
+                    <dd>1.53 MB</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Portable size</dt>
+                    <dd>3.83 MB</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Installer SHA-256</dt>
+                    <dd class="copy-row">
+                      <span id="shaValue">c8b9fa5bd8e8b28420cb061fe3af250a8000d6238c44cff78920fd14a2e505ed</span>
+                      <button class="copy-btn" type="button" id="copySha" aria-label="Copy the installer SHA-256 checksum" data-copy="c8b9fa5bd8e8b28420cb061fe3af250a8000d6238c44cff78920fd14a2e505ed">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke-linecap="round" /></svg>
+                      </button>
+                    </dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Portable SHA-256</dt>
+                    <dd class="copy-row">
+                      <span>349f6ced45755558…</span>
+                      <button class="copy-btn" type="button" aria-label="Copy the portable SHA-256 checksum" data-copy="349f6ced45755558bfaeeb85b8a9dc496749b0960ccfe86a345f308f352f20ad">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke-linecap="round" /></svg>
+                      </button>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div class="download__cards">
+                <a class="dl" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/releases/download/v2.0.0/WindowsMemoryCleanerNG_2.0.0_x64-setup.exe" download>
+                  <span class="dl__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </span>
+                  <div>
+                    <div class="dl__name">WindowsMemoryCleanerNG_2.0.0_x64-setup.exe</div>
+                    <div class="dl__meta">Installer · 1.53 MB · recommended</div>
+                  </div>
+                  <span class="btn btn--primary btn--sm">Download</span>
+                </a>
+
+                <a class="dl" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/releases/download/v2.0.0/WindowsMemoryCleanerNG.exe" download>
+                  <span class="dl__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round" /></svg>
+                  </span>
+                  <div>
+                    <div class="dl__name">WindowsMemoryCleanerNG.exe</div>
+                    <div class="dl__meta">Portable · 3.83 MB · no installation</div>
+                  </div>
+                  <span class="btn btn--ghost btn--sm">Download</span>
+                </a>
+
+                <a class="btn btn--ghost" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/releases/download/v2.0.0/SHA256SUMS.txt" target="_blank" rel="noopener noreferrer">
+                  Checksums (SHA-256)
+                </a>
+                <a class="btn btn--ghost" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/releases/tag/v2.0.0" target="_blank" rel="noopener noreferrer">Release notes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FAQ ================= -->
+      <section class="section" id="faq" aria-labelledby="faqTitle">
+        <div class="wrap wrap--narrow">
+          <div class="section-head">
+            <span class="eyebrow">FAQ</span>
+            <h2 id="faqTitle">Questions worth answering honestly</h2>
+          </div>
+
+          <div class="faq">
+            <div class="faq__search">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" stroke-linecap="round" /></svg>
+              <input type="search" id="faqSearch" placeholder="Search the questions…" aria-label="Search frequently asked questions" autocomplete="off" />
+            </div>
+
+            <div id="faqList">
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>What does Windows Memory Cleaner NG actually do?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>It asks Windows to perform specific memory-management operations on demand — trimming process working sets, clearing the standby list, flushing the modified page list and the file cache — and it measures memory before and after each run so you can see what was actually released.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Does it increase FPS or make games faster?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>No, and it does not claim to. Freeing memory does not add frames. Windows keeps free RAM useful as a cache and refills it after a purge. What helps a game is enough physical RAM and fewer background programs — not a memory purge.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Does Windows already manage memory?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>Yes, and well. It caches aggressively because that makes programs launch faster, and standby memory is available to any program that asks for it. This application is a measuring instrument for specific operations, not a replacement for that management.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>What is the standby list?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>Memory Windows keeps holding after a program has closed or stopped using it, so the data can be reused instantly. Those pages count as available memory. Clearing the low-priority part of the list discards only the coldest pages; a full purge discards all of them and is marked disruptive for that reason.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Does the application terminate processes?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>No. The Processes page trims an individual process's working set — an ask, not a kill. The process keeps running and reloads pages when it needs them. There is no terminate action anywhere in the application.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Does it require administrator privileges?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>For the system-wide operations, yes. Monitoring, history, startup apps and trimming its own working set work as a normal user. When a selection needs more rights, the primary button becomes <em>Clean as Administrator</em> and Windows asks for permission — the application does not fail silently.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Is automation on by default?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>No. You enable it, then choose a memory threshold, a fixed interval or either. A cooldown always applies, and a hysteresis latch stops it firing repeatedly when memory hovers at your threshold.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Installer or portable — what is the difference?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>The installer places the application in your user profile and creates Start Menu and desktop shortcuts, plus an entry in installed apps. The portable file is one executable you can run from anywhere and delete when you are done. Both need no administrator rights to install and both use the same settings folder.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Which Windows versions are supported?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>Windows 10 version 1809 or later, and Windows 11, on x64. It also needs the Microsoft Edge WebView2 runtime, which ships with Windows 11 and current Windows 10. Other architectures are not built or tested.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Does it collect telemetry?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>The desktop application makes no network connections at runtime and collects no telemetry. What it writes stays on your machine: a settings file, a history file and a log. See the <a href="privacy.html">privacy policy</a> for what that means for this website, which is a separate thing.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>How do I uninstall it?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>Installed version: Settings → Apps → Windows Memory Cleaner NG → Uninstall, or run <code>uninstall.exe</code> in its folder. Portable version: delete the file. Either way, delete <code>%APPDATA%\WindowsMemoryCleanerNG</code> if you also want your settings and history gone.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>Where are settings and history stored?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>In <code>%APPDATA%\WindowsMemoryCleanerNG\</code> — <code>settings.json</code>, <code>history.json</code> and <code>logs\application.log</code>. All three are plain files you can read, back up or delete.</p></div></div>
+              </div>
+
+              <div class="faq__item" data-open="false">
+                <button class="faq__q" aria-expanded="false"><span>How do I report a security issue?</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round" /></svg></button>
+                <div class="faq__a"><div><p>Privately, not in a public issue. The route is described in the repository's <a href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">security policy</a>.</p></div></div>
+              </div>
+            </div>
+
+            <p class="faq__empty" id="faqEmpty" data-visible="false">No question matches that search. Try a shorter word, or clear the field.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a class="brand" href="#top">
+              <img src="assets/icon-256.png" alt="" width="30" height="30" />
+              <span class="brand__name">Memory Cleaner<span>Next Generation</span></span>
+            </a>
+            <p>
+              A native Windows utility for the system's own memory-management operations, with honest
+              measurement. Created and developed by Kabbali Gamer.
+            </p>
+          </div>
+
+          <div class="footer__cols">
+            <div>
+              <h2>Product</h2>
+              <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#tour">Product tour</a></li>
+                <li><a href="#gallery">Screenshots</a></li>
+                <li><a href="#download">Download</a></li>
+              </ul>
+            </div>
+            <div>
+              <h2>Learn</h2>
+              <ul>
+                <li><a href="#how">How it works</a></li>
+                <li><a href="#automation">Automation</a></li>
+                <li><a href="#safety">Safety</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </div>
+            <div>
+              <h2>Legal &amp; support</h2>
+              <ul>
+                <li><a href="terms.html">Terms of use</a></li>
+                <li><a href="privacy.html">Privacy policy</a></li>
+                <li><a href="license.html">Licence &amp; credits</a></li>
+                <li><a href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__base">
+          <span>© 2026 Kabbali Gamer. All rights reserved.</span>
+          <span>Windows is a trademark of Microsoft Corporation. Not affiliated with or endorsed by Microsoft.</span>
+        </div>
+      </div>
+    </footer>
+
+    <button class="to-top" id="toTop" aria-label="Back to top" data-visible="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </button>
+
+    <!-- ================= LIGHTBOX ================= -->
+    <div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+      <div class="lightbox__frame">
+        <button class="lightbox__btn lightbox__close" id="lbClose" aria-label="Close the screenshot viewer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+        </button>
+        <img class="lightbox__img" id="lbImage" src="" alt="" />
+        <div class="lightbox__bar">
+          <span id="lbCaption"></span>
+          <div class="lightbox__nav">
+            <button class="lightbox__btn" id="lbPrev" aria-label="Previous screenshot">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+            <button class="lightbox__btn" id="lbNext" aria-label="Next screenshot">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

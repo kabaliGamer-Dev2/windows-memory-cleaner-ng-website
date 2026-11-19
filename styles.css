@@ -366,8 +366,10 @@ button {
 }
 
 .nav[data-stuck="true"] {
-  background: rgb(248 246 243 / 0.86);
-  backdrop-filter: blur(14px) saturate(140%);
+  /* No backdrop-filter here. A blur on a full-width sticky bar re-rasterises on
+     every scroll frame and Lighthouse measured 150 ms of forced reflow from it.
+     At 96% opacity the difference is invisible on this palette. */
+  background: rgb(248 246 243 / 0.96);
   border-bottom-color: var(--border);
 }
 
@@ -636,7 +638,6 @@ button {
   border: 1px solid var(--border-strong);
   border-radius: 10px;
   box-shadow: 0 14px 34px -18px rgb(46 38 24 / 0.45);
-  backdrop-filter: blur(8px);
 }
 
 .chip strong {
@@ -972,7 +973,6 @@ button {
   justify-content: center;
   padding: clamp(1rem, 3vw, 3rem);
   background: rgb(250 249 247 / 0.97);
-  backdrop-filter: blur(6px);
 }
 
 .lightbox[data-open="true"] {
@@ -1395,7 +1395,6 @@ button {
   border-radius: 50%;
   background: rgb(255 255 255 / 0.92);
   color: var(--text-2);
-  backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   transform: translateY(0.5rem);

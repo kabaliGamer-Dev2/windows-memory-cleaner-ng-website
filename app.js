@@ -20,8 +20,16 @@
   var navToggle = document.getElementById("navToggle");
   var navMobile = document.getElementById("navMobile");
 
+  var navStuck = null;
+
   function updateNav() {
-    if (nav) nav.dataset.stuck = String(window.scrollY > 8);
+    // Writing the attribute on every scroll event invalidates layout even when the
+    // value is unchanged, which is what made the scroll handler expensive.
+    if (!nav) return;
+    var next = window.scrollY > 8;
+    if (next === navStuck) return;
+    navStuck = next;
+    nav.dataset.stuck = String(next);
   }
   updateNav();
   window.addEventListener("scroll", updateNav, { passive: true });

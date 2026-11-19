@@ -54,6 +54,50 @@
     <link rel="stylesheet" href="styles.css" />
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/#website",
+      "url": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/",
+      "name": "Windows Memory Cleaner NG",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/#author"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/#author",
+      "name": "Kabbali Gamer",
+      "url": "https://github.com/kabaliGamer-Dev2",
+      "sameAs": [
+        "https://github.com/kabaliGamer-Dev2"
+      ],
+      "knowsAbout": [
+        "Windows memory management",
+        "Rust systems programming",
+        "Desktop application development"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/#webpage",
+      "url": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/",
+      "name": "Windows Memory Cleaner NG — native Windows memory management",
+      "isPartOf": {
+        "@id": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/#website"
+      },
+      "about": {
+        "@id": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/#software"
+      },
+      "primaryImageOfPage": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/assets/og-cover.jpg"
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -69,7 +113,16 @@
         "isAccessibleForFree": true,
         "author": {
           "@type": "Person",
-          "name": "Kabbali Gamer"
+          "name": "Kabbali Gamer",
+          "url": "https://github.com/kabaliGamer-Dev2",
+          "sameAs": ["https://github.com/kabaliGamer-Dev2"]
+        },
+        "screenshot": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/assets/og-cover.jpg",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
         },
         "license": "https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/blob/main/LICENSE",
         "url": "https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/",
@@ -142,7 +195,7 @@
     <header class="nav" id="nav">
       <div class="wrap nav__inner">
         <a class="brand" href="#top">
-          <img src="assets/icon-256.png" alt="" width="30" height="30" />
+          <img src="assets/icon.png" alt="" width="30" height="30" />
           <span class="brand__name">
             Memory Cleaner
             <span>Next Generation</span>
@@ -261,7 +314,7 @@
                 <span class="window__title">Windows Memory Cleaner NG — Memory Monitor</span>
               </div>
               <img
-                src="assets/shots/monitor.webp"
+                src="assets/shots/monitor.webp" srcset="assets/shots/monitor-800.webp 800w, assets/shots/monitor.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw"
                 alt="The Memory Monitor page of Windows Memory Cleaner NG: a live physical-memory-load chart peaking at 76 percent, with used, available, cached, commit and kernel-pool figures measured at the same moment."
                 width="1280"
                 height="820"
@@ -368,7 +421,7 @@
                   <span class="window__title">Dashboard</span>
                 </div>
                 <img
-                  src="assets/shots/dashboard.webp"
+                  src="assets/shots/dashboard.webp" srcset="assets/shots/dashboard-800.webp 800w, assets/shots/dashboard.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw"
                   alt="Dashboard showing memory in use as a ring, a live availability chart, and separate figures for available, cached, committed and reclaimable memory."
                   width="1280"
                   height="820"
@@ -499,7 +552,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Memory Cleaner</span>
                 </div>
-                <img src="assets/shots/cleaner.webp" alt="The Memory Cleaner page listing eight operations with checkboxes, a permission badge on each privileged operation, and a run bar showing the estimated reclaimable ceiling." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/cleaner.webp" srcset="assets/shots/cleaner-800.webp 800w, assets/shots/cleaner.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Memory Cleaner page listing eight operations with checkboxes, a permission badge on each privileged operation, and a run bar showing the estimated reclaimable ceiling." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -530,7 +583,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Memory Monitor</span>
                 </div>
-                <img src="assets/shots/monitor.webp" alt="The Memory Monitor page with live charts of memory load, available memory, cached memory and committed memory over time." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/monitor.webp" srcset="assets/shots/monitor-800.webp 800w, assets/shots/monitor.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Memory Monitor page with live charts of memory load, available memory, cached memory and committed memory over time." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -557,7 +610,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Processes</span>
                 </div>
-                <img src="assets/shots/processes.webp" alt="The Processes page listing running programs with their working set, private memory and process id, with a trim action on each row." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/processes.webp" srcset="assets/shots/processes-800.webp 800w, assets/shots/processes.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Processes page listing running programs with their working set, private memory and process id, with a trim action on each row." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -584,7 +637,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Automation</span>
                 </div>
-                <img src="assets/shots/automation.webp" alt="The Automation page showing an opt-in switch, a trigger mode selector, interval and threshold sliders with presets, and the operations automation will run." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/automation.webp" srcset="assets/shots/automation-800.webp 800w, assets/shots/automation.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Automation page showing an opt-in switch, a trigger mode selector, interval and threshold sliders with presets, and the operations automation will run." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -615,7 +668,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Activity</span>
                 </div>
-                <img src="assets/shots/activity.webp" alt="The Activity page listing past cleanup runs with their trigger, duration and the result of each individual memory operation." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/activity.webp" srcset="assets/shots/activity-800.webp 800w, assets/shots/activity.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Activity page listing past cleanup runs with their trigger, duration and the result of each individual memory operation." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -642,7 +695,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Startup Apps</span>
                 </div>
-                <img src="assets/shots/startup.webp" alt="The Startup Apps page listing nineteen programs that start with Windows, each with a switch, its command path and where it is registered." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/startup.webp" srcset="assets/shots/startup-800.webp 800w, assets/shots/startup.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Startup Apps page listing nineteen programs that start with Windows, each with a switch, its command path and where it is registered." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -669,7 +722,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Settings</span>
                 </div>
-                <img src="assets/shots/settings.webp" alt="The Settings page with appearance, monitoring, launch options including start with Windows and ask for administrator rights, exclusions, notifications and diagnostics." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/settings.webp" srcset="assets/shots/settings-800.webp 800w, assets/shots/settings.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The Settings page with appearance, monitoring, launch options including start with Windows and ask for administrator rights, exclusions, notifications and diagnostics." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -695,7 +748,7 @@
                   <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                   <span class="window__title">Keyboard shortcuts</span>
                 </div>
-                <img src="assets/shots/automation.webp" alt="The keyboard shortcuts card, where the three global shortcuts can be changed or disabled." width="1280" height="796" loading="lazy" decoding="async" />
+                <img src="assets/shots/automation.webp" srcset="assets/shots/automation-800.webp 800w, assets/shots/automation.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="The keyboard shortcuts card, where the three global shortcuts can be changed or disabled." width="1280" height="796" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="feature__body">
@@ -1006,7 +1059,7 @@
                 <div class="window__dots" aria-hidden="true"><i></i><i></i><i></i></div>
                 <span class="window__title">Automation</span>
               </div>
-              <img src="assets/shots/automation.webp" alt="Automation settings showing the opt-in switch, trigger modes, threshold and interval presets, cooldown, and the operations automation is allowed to run." width="1280" height="796" loading="lazy" decoding="async" />
+              <img src="assets/shots/automation.webp" srcset="assets/shots/automation-800.webp 800w, assets/shots/automation.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Automation settings showing the opt-in switch, trigger modes, threshold and interval presets, cooldown, and the operations automation is allowed to run." width="1280" height="796" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -1156,49 +1209,49 @@
 
           <div class="gallery" id="gallery">
             <button class="gallery__item" type="button" data-src="assets/shots/dashboard.webp" data-caption="Dashboard — memory in use, availability over time, and the last run">
-              <img src="assets/shots/dashboard.webp" alt="Dashboard page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/dashboard.webp" srcset="assets/shots/dashboard-800.webp 800w, assets/shots/dashboard.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Dashboard page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Dashboard
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/cleaner.webp" data-caption="Memory Cleaner — eight operations with per-operation permission state">
-              <img src="assets/shots/cleaner.webp" alt="Memory Cleaner page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/cleaner.webp" srcset="assets/shots/cleaner-800.webp 800w, assets/shots/cleaner.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Memory Cleaner page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Memory Cleaner
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/monitor.webp" data-caption="Memory Monitor — load, available, cached and committed over time">
-              <img src="assets/shots/monitor.webp" alt="Memory Monitor page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/monitor.webp" srcset="assets/shots/monitor-800.webp 800w, assets/shots/monitor.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Memory Monitor page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Memory Monitor
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/processes.webp" data-caption="Processes — who is holding memory, with a per-process trim">
-              <img src="assets/shots/processes.webp" alt="Processes page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/processes.webp" srcset="assets/shots/processes-800.webp 800w, assets/shots/processes.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Processes page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Processes
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/automation.webp" data-caption="Automation — opt-in triggers, presets, cooldown and pause">
-              <img src="assets/shots/automation.webp" alt="Automation page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/automation.webp" srcset="assets/shots/automation-800.webp 800w, assets/shots/automation.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Automation page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Automation
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/activity.webp" data-caption="Activity — every run with its trigger, duration and per-operation result">
-              <img src="assets/shots/activity.webp" alt="Activity page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/activity.webp" srcset="assets/shots/activity-800.webp 800w, assets/shots/activity.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Activity page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Activity
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/startup.webp" data-caption="Startup Apps — what Windows launches at sign-in, and reversible switches">
-              <img src="assets/shots/startup.webp" alt="Startup Apps page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/startup.webp" srcset="assets/shots/startup-800.webp 800w, assets/shots/startup.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Startup Apps page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Startup Apps
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
             </button>
             <button class="gallery__item" type="button" data-src="assets/shots/settings.webp" data-caption="Settings — appearance, monitoring, launch behaviour, exclusions and diagnostics">
-              <img src="assets/shots/settings.webp" alt="Settings page" width="640" height="410" loading="lazy" decoding="async" />
+              <img src="assets/shots/settings.webp" srcset="assets/shots/settings-800.webp 800w, assets/shots/settings.webp 1280w" sizes="(min-width: 980px) 640px, (min-width: 760px) 46vw, 92vw" alt="Settings page" width="640" height="410" loading="lazy" decoding="async" />
               <span class="gallery__cap">Settings
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </span>
@@ -1506,7 +1559,7 @@
         <div class="footer__grid">
           <div class="footer__brand">
             <a class="brand" href="#top">
-              <img src="assets/icon-256.png" alt="" width="30" height="30" />
+              <img src="assets/icon.png" alt="" width="30" height="30" />
               <span class="brand__name">Memory Cleaner<span>Next Generation</span></span>
             </a>
             <p>

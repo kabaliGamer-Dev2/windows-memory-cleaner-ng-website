@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kabaliGamer-Dev2.github.io/windows-memory-cleaner-ng-website/sitemap.xml
+Sitemap: https://kabaligamer-dev2.github.io/windows-memory-cleaner-ng-website/sitemap.xml

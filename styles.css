@@ -473,6 +473,10 @@ button {
 
 .nav__mobile[data-open="true"] {
   display: block;
+  /* A 634px sheet inside a sticky bar has to scroll on short viewports, or its
+     last links sit permanently below the fold. */
+  max-height: calc(100dvh - 4.25rem);
+  overflow-y: auto;
 }
 
 .nav__mobile a {
@@ -1120,9 +1124,7 @@ button {
 .dl__name {
   font-weight: 600;
   font-size: var(--step-0);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .dl__meta {

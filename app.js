@@ -12,6 +12,9 @@
 (function () {
   "use strict";
 
+  // Enables the scroll-reveal styles. Everything they hide is visible by default.
+  document.documentElement.classList.add("js");
+
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------------------------------------------------------------- nav --- */

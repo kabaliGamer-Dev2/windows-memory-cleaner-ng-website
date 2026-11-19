@@ -37,6 +37,29 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("assets/fonts/jetbrains-mono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* --- Tokens -------------------------------------------------------------- */
 
 :root {
@@ -68,7 +91,9 @@
 
   /* Type */
   --font: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+  /* Ligatures off: a checksum must copy as typed, not as a glyph. */
+  --mono-features: "liga" 0, "calt" 0;
 
   --step--1: clamp(0.82rem, 0.79rem + 0.14vw, 0.9rem);
   --step-0: clamp(0.95rem, 0.91rem + 0.2vw, 1.06rem);
@@ -1547,6 +1572,415 @@ button {
   .lightbox,
   .hero__window {
     display: none;
+  }
+}
+
+/* ==========================================================================
+   Narrative sections: why, evolution, engineering, stack, credit, community
+   All values come from the existing token sheet — no new palette entries.
+   ========================================================================== */
+
+/* --- Why this generation exists ----------------------------------------- */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.why-card {
+  padding: clamp(1.4rem, 3vw, 2.1rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.why-card h3 {
+  font-size: var(--step-1);
+}
+
+.why-card p {
+  margin-top: 0.7rem;
+  font-size: var(--step--1);
+  color: var(--text-2);
+}
+
+/* --- Evolution: two generations ----------------------------------------- */
+
+.evo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.evo-card {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.evo-card--current {
+  border-color: var(--accent-line);
+  background:
+    radial-gradient(140% 120% at 100% 0%, hsl(36 92% 58% / 0.16), transparent 62%),
+    var(--surface);
+}
+
+.evo-card__head {
+  display: block;
+}
+
+.evo-badge {
+  display: inline-block;
+  padding: 0.28rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.evo-badge--current {
+  color: var(--accent);
+  background: var(--accent-quiet);
+  border-color: var(--accent-line);
+}
+
+.evo-card h3 {
+  margin-top: 0.7rem;
+  font-size: var(--step-2);
+}
+
+.evo-card__meta {
+  margin-top: 0.35rem;
+  font-size: var(--step--1);
+  color: var(--text-3);
+}
+
+.evo-card > p {
+  margin-top: 1rem;
+  font-size: var(--step--1);
+  color: var(--text-2);
+}
+
+.evo-card__sub {
+  margin-top: 1.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.evo-list {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.evo-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: var(--step--1);
+  color: var(--text-2);
+}
+
+.evo-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.evo-list--good li::before {
+  background: var(--ok);
+}
+
+.evo-link {
+  display: inline-block;
+  margin-top: 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  word-break: break-all;
+  transition: color 0.16s var(--ease);
+}
+
+.evo-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.evo-disclaimer {
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  padding: 1rem 1.2rem;
+  font-size: var(--step--1);
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* --- Engineering table and metrics -------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.eng-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+
+.eng-table th {
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.eng-table td {
+  padding: 0.9rem 1.1rem;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.eng-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.eng-table td:first-child {
+  color: var(--text);
+  font-weight: 500;
+  width: 38%;
+}
+
+.sub-head {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: var(--step-2);
+}
+
+.sub-lede {
+  margin-top: 0.9rem;
+  max-width: 66ch;
+  font-size: var(--step--1);
+  color: var(--text-2);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.6rem;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: clamp(1.1rem, 2.5vw, 1.7rem);
+  background: var(--surface);
+}
+
+.metric__value {
+  font-family: var(--mono);
+  font-size: var(--step-2);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.metric__value small {
+  margin-left: 0.15rem;
+  font-size: 0.42em;
+  color: var(--text-3);
+}
+
+.metric__label {
+  font-size: var(--step--1);
+  color: var(--text-3);
+}
+
+/* --- Technology stack --------------------------------------------------- */
+
+.stack-groups {
+  display: grid;
+  gap: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.stack-group__title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.stack-items {
+  display: grid;
+  gap: 0;
+}
+
+.stack-items li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stack-name {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stack-name b {
+  margin-left: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.stack-role {
+  font-size: var(--step--1);
+  color: var(--text-2);
+}
+
+/* --- Acknowledgment ----------------------------------------------------- */
+
+.quote {
+  margin: 0;
+  padding: clamp(1.6rem, 4vw, 2.8rem);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-line);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  background: var(--surface);
+}
+
+.quote p {
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.quote p + p {
+  margin-top: 1.1rem;
+}
+
+.quote__thanks {
+  font-weight: 500;
+  color: var(--accent) !important;
+}
+
+.credit-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+
+/* --- Community ---------------------------------------------------------- */
+
+.community-title {
+  margin-top: 1rem;
+  font-size: var(--step-3);
+  max-width: 22ch;
+}
+
+.community-lede {
+  margin-top: 1.2rem;
+  max-width: 68ch;
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.community-card {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.community-card:hover {
+  border-color: var(--accent-line);
+  transform: translateY(-2px);
+}
+
+.community-card h3 {
+  font-size: var(--step-1);
+}
+
+.community-card p {
+  margin-top: 0.7rem;
+  font-size: var(--step--1);
+  color: var(--text-2);
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (min-width: 760px) {
+  .why-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .community-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stack-items li {
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 1.2rem;
+    align-items: baseline;
+  }
+}
+
+@media (min-width: 980px) {
+  .evo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

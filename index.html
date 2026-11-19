@@ -150,10 +150,12 @@
         </a>
 
         <nav class="nav__links" aria-label="Primary">
+          <a href="#why">Why NG</a>
+          <a href="#evolution">Evolution</a>
           <a href="#features">Features</a>
-          <a href="#tour">Product tour</a>
-          <a href="#how">How it works</a>
-          <a href="#faq">FAQ</a>
+          <a href="#engineering">Engineering</a>
+          <a href="#stack">Tech stack</a>
+          <a href="#community">Community</a>
           <a href="#download">Download</a>
         </nav>
 
@@ -186,11 +188,14 @@
       </div>
 
       <div class="nav__mobile" id="navMobile" data-open="false">
+        <a href="#why">Why NG</a>
+        <a href="#evolution">Evolution</a>
         <a href="#features">Features</a>
-        <a href="#tour">Product tour</a>
-        <a href="#how">How it works</a>
-        <a href="#automation">Automation</a>
-        <a href="#safety">Safety</a>
+        <a href="#engineering">Engineering</a>
+        <a href="#stack">Tech stack</a>
+        <a href="#transparency">Privacy</a>
+        <a href="#thanks">Credit</a>
+        <a href="#community">Community</a>
         <a href="#faq">FAQ</a>
         <a href="#download">Download</a>
       </div>
@@ -299,10 +304,53 @@
         </div>
       </section>
 
+      <!-- ================= WHY ================= -->
+      <section class="section" id="why" aria-labelledby="whyTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">01</span>
+          <div class="section-head">
+            <span class="eyebrow">Why this exists</span>
+            <h2 id="whyTitle">The original showed me how it works. My own testing showed me what I wanted different.</h2>
+            <p>
+              I used WinMemoryCleaner because it exposed operations Windows normally hides. While using
+              it I hit three things I wanted to change — and none of them is a defect in the original.
+              They are the things a second implementation can do differently.
+            </p>
+          </div>
+
+          <div class="why-grid">
+            <article class="why-card">
+              <h3>Responsiveness</h3>
+              <p>
+                A cleanup issues system calls that can take a moment. When that work shares a thread
+                with the interface, the window stops answering while it runs. The next generation puts
+                every operation on its own thread and keeps the UI free to redraw.
+              </p>
+            </article>
+            <article class="why-card">
+              <h3>Control</h3>
+              <p>
+                Background behaviour should be something you set, not something you notice. Automation
+                here is off until you enable it, with an explicit trigger, a cooldown and a latch so a
+                machine resting at its threshold cannot be cleaned in a loop.
+              </p>
+            </article>
+            <article class="why-card">
+              <h3>Visibility</h3>
+              <p>
+                <em>Freed 1.2 GB</em> is not an answer if you cannot see which operation released what.
+                Every run here records a per-operation result, the trigger, the duration and the errors —
+                and reports a failure as a failure.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- ================= PRODUCT TOUR ================= -->
       <section class="section" id="tour" aria-labelledby="tourTitle">
         <div class="wrap">
-          <span class="section-numeral" aria-hidden="true">01</span>
+          <span class="section-numeral" aria-hidden="true">02</span>
           <div class="section-head">
             <span class="eyebrow">Product tour</span>
             <h2 id="tourTitle">The whole machine on one page, then the detail when you need it</h2>
@@ -352,10 +400,88 @@
         </div>
       </section>
 
+      <!-- ================= EVOLUTION ================= -->
+      <section class="section" id="evolution" aria-labelledby="evoTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">03</span>
+          <div class="section-head">
+            <span class="eyebrow">Evolution</span>
+            <h2 id="evoTitle">Built on inspiration. Re-engineered for what comes next.</h2>
+            <p>
+              Two generations, two codebases, one idea: let a user see and control the memory
+              operations Windows performs on their behalf. The second was written after studying the
+              first.
+            </p>
+          </div>
+
+          <div class="evo-grid">
+            <article class="evo-card">
+              <header class="evo-card__head">
+                <span class="evo-badge">Generation 1</span>
+                <h3>WinMemoryCleaner</h3>
+                <p class="evo-card__meta">
+                  by <strong>Igor Mundstein</strong> · GPL-3.0-or-later
+                </p>
+              </header>
+              <p>
+                A focused Windows utility that put memory-management operations in front of the user:
+                working sets, the standby list, system file cache and the combined page list. It showed
+                that these mechanisms are reachable from a normal desktop application, and its
+                documentation and behaviour became the starting point for my own investigation.
+              </p>
+              <h4 class="evo-card__sub">What I ran into while using and testing it</h4>
+              <ul class="evo-list">
+                <li>The window could feel unresponsive while an operation was running.</li>
+                <li>Some operations produced noticeable pauses elsewhere in the system.</li>
+                <li>Control over background behaviour and scheduling was limited.</li>
+                <li>Per-operation results were harder to read than I wanted.</li>
+              </ul>
+              <a class="evo-link" href="https://github.com/IgorMundstein/WinMemoryCleaner" target="_blank" rel="noopener noreferrer">
+                github.com/IgorMundstein/WinMemoryCleaner
+              </a>
+            </article>
+
+            <article class="evo-card evo-card--current">
+              <header class="evo-card__head">
+                <span class="evo-badge evo-badge--current">Generation 2</span>
+                <h3>Windows Memory Cleaner NG</h3>
+                <p class="evo-card__meta">
+                  by <strong>Kabbali Gamer</strong> · proprietary, free to use · v2.0.0
+                </p>
+              </header>
+              <p>
+                An independent implementation written from scratch. The Windows calls, measurement
+                model, interface, automation engine, storage format and packaging were all designed for
+                this project — nothing was copied, and no source from the original is included or
+                adapted.
+              </p>
+              <h4 class="evo-card__sub">What is different by construction</h4>
+              <ul class="evo-list evo-list--good">
+                <li>One Rust backend owns every Win32 call; the UI never blocks on one.</li>
+                <li>Cleanups run on their own thread and report per-operation outcomes.</li>
+                <li>Automation is opt-in, with cooldown, hysteresis and a pause switch.</li>
+                <li>Startup apps are manageable — the change that survives a reboot.</li>
+                <li>Logs and diagnostic exports are redacted before they reach disk.</li>
+                <li>No network client, no telemetry, no update check.</li>
+              </ul>
+              <a class="evo-link" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng" target="_blank" rel="noopener noreferrer">
+                github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng
+              </a>
+            </article>
+          </div>
+
+          <p class="evo-disclaimer">
+            <strong>Independently developed.</strong> This is a next-generation implementation inspired
+            by the original WinMemoryCleaner project. It is not affiliated with, endorsed by, sponsored
+            by or a collaboration with Igor Mundstein, and the two projects share no ownership.
+          </p>
+        </div>
+      </section>
+
       <!-- ================= FEATURES ================= -->
       <section class="section" id="features" aria-labelledby="featuresTitle">
         <div class="wrap">
-          <span class="section-numeral" aria-hidden="true">02</span>
+          <span class="section-numeral" aria-hidden="true">04</span>
           <div class="section-head">
             <span class="eyebrow">Features</span>
             <h2 id="featuresTitle">Eight pages. No filler on any of them.</h2>
@@ -590,10 +716,184 @@
         </div>
       </section>
 
+      <!-- ================= ENGINEERING ================= -->
+      <section class="section" id="engineering" aria-labelledby="engTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">05</span>
+          <div class="section-head">
+            <span class="eyebrow">Engineering</span>
+            <h2 id="engTitle">Engineered around performance</h2>
+            <p>
+              Performance here means three specific things, and it is worth being precise about which:
+              the window keeps answering, background work is bounded, and every result can be traced to
+              a call that produced it.
+            </p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="eng-table">
+              <caption class="visually-hidden">Engineering decisions and their effect</caption>
+              <thead>
+                <tr><th scope="col">Decision</th><th scope="col">Why it matters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>All system calls live in one Rust backend</td>
+                  <td>The UI cannot issue an unbounded number of system calls, and a slow call cannot freeze a render.</td>
+                </tr>
+                <tr>
+                  <td>Cleanups execute on a dedicated thread</td>
+                  <td>The interface keeps repainting while an operation runs, so progress is visible instead of a frozen window.</td>
+                </tr>
+                <tr>
+                  <td>Sampling is a fixed cadence, not a loop</td>
+                  <td>One reading per interval (250 ms to 10 s, your choice) instead of continuous polling — the cost is predictable and configurable.</td>
+                </tr>
+                <tr>
+                  <td>History is capped in memory</td>
+                  <td>30 to 600 samples and a bounded run list, so a long session cannot grow without limit.</td>
+                </tr>
+                <tr>
+                  <td>The log rotates at 2 MB</td>
+                  <td>Diagnostics stay useful without filling the disk over months of use.</td>
+                </tr>
+                <tr>
+                  <td>Disruptive operations are labelled</td>
+                  <td>Flushing the file cache costs disk activity; the interface says so before you select it rather than after.</td>
+                </tr>
+                <tr>
+                  <td>Per-operation error capture</td>
+                  <td>A refused call is recorded with the privilege it needed, which turns "it did nothing" into a specific, fixable message.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-head">What was measured, and what was not</h3>
+          <p class="sub-lede">
+            These figures come from one machine running the released build. They are measurements, not a
+            benchmark suite, and they are reported with their environment so you can judge how much they
+            apply to you.
+          </p>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <span class="metric__value">1.53<small>MB</small></span>
+              <span class="metric__label">installer, NSIS</span>
+            </div>
+            <div class="metric">
+              <span class="metric__value">3.83<small>MB</small></span>
+              <span class="metric__label">portable executable</span>
+            </div>
+            <div class="metric">
+              <span class="metric__value">2.15<small>%</small></span>
+              <span class="metric__label">idle CPU, one core</span>
+            </div>
+            <div class="metric">
+              <span class="metric__value">24–26<small>MB</small></span>
+              <span class="metric__label">working set, window open</span>
+            </div>
+          </div>
+
+          <dl class="spec">
+            <div class="spec__row"><dt class="spec__key">Environment</dt><dd class="spec__val">Windows 11 (build 26300), x64, 16 cores, 16 GiB physical memory</dd></div>
+            <div class="spec__row"><dt class="spec__key">Build</dt><dd class="spec__val">Version 2.0.0, release profile, the file published on the release page</dd></div>
+            <div class="spec__row"><dt class="spec__key">Method</dt><dd class="spec__val">Idle CPU sampled over a 60-second window with the window open and monitoring at 1 s; working set read from the process counters in Task Manager</dd></div>
+            <div class="spec__row"><dt class="spec__key">Not measured</dt><dd class="spec__val">Frame timings, comparative throughput against the original, battery impact, or behaviour on other hardware</dd></div>
+          </dl>
+
+          <p class="feature__note">
+            <strong>Memory cleaning is not a speed-up.</strong> Windows keeps free RAM as cache on
+            purpose and refills it after a purge. What this application changes is which pages are held
+            and how visible that is — not how fast your processor runs. The durable change you can make
+            is on the <a href="#features">Startup Apps</a> page: fewer programs loading at sign-in.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= STACK ================= -->
+      <section class="section" id="stack" aria-labelledby="stackTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">06</span>
+          <div class="section-head">
+            <span class="eyebrow">Technology</span>
+            <h2 id="stackTitle">The stack, read from the repository</h2>
+            <p>
+              Every version below was taken from <code>package.json</code> and
+              <code>Cargo.toml</code>. Nothing here is listed for appearance — each item does a
+              specific job in the application, and that job is stated.
+            </p>
+          </div>
+
+          <div class="stack-groups">
+            <section class="stack-group" aria-labelledby="stackFrontend">
+              <h3 id="stackFrontend" class="stack-group__title">Frontend</h3>
+              <ul class="stack-items">
+                <li><span class="stack-name">React <b>19.3.1</b></span><span class="stack-role">Renders all eight application pages and every live figure.</span></li>
+                <li><span class="stack-name">TypeScript <b>5.9.3</b></span><span class="stack-role">Types the IPC payloads so a backend field rename fails the build, not the session.</span></li>
+                <li><span class="stack-name">Vite <b>7.3.8</b></span><span class="stack-role">Dev server and the production bundle the webview loads.</span></li>
+                <li><span class="stack-name">Zustand <b>5.1.0</b></span><span class="stack-role">Small shared stores for settings, live samples and history — no provider tree.</span></li>
+                <li><span class="stack-name">Framer Motion <b>12.43</b></span><span class="stack-role">Page transitions and number changes; every animation is skipped when reduced motion is requested.</span></li>
+                <li><span class="stack-name">Lucide React <b>0.577</b></span><span class="stack-role">The icon set — tree-shaken, so only used glyphs ship.</span></li>
+                <li><span class="stack-name">Hand-written SVG</span><span class="stack-role">All charts. The monitor draws its own axes and series instead of loading a chart library.</span></li>
+                <li><span class="stack-name">Plain CSS + tokens</span><span class="stack-role">One token sheet drives colours, spacing and type; no CSS framework and no utility build step.</span></li>
+              </ul>
+            </section>
+
+            <section class="stack-group" aria-labelledby="stackDesktop">
+              <h3 id="stackDesktop" class="stack-group__title">Desktop application</h3>
+              <ul class="stack-items">
+                <li><span class="stack-name">Tauri <b>2.12</b></span><span class="stack-role">Hosts the webview, owns the window, the tray icon and the command boundary between JavaScript and Rust.</span></li>
+                <li><span class="stack-name">WebView2</span><span class="stack-role">Ships with Windows 10 and 11; the UI runs in the system webview rather than a bundled browser engine.</span></li>
+                <li><span class="stack-name">27 IPC commands</span><span class="stack-role">The complete API surface between the interface and the backend, each one validated at the boundary.</span></li>
+                <li><span class="stack-name">Single-instance mutex</span><span class="stack-role">One window only; a second launch asks the running instance to come forward, and hands over cleanly when elevating.</span></li>
+                <li><span class="stack-name">tray-icon feature</span><span class="stack-role">Close-to-tray and the three global shortcuts.</span></li>
+              </ul>
+            </section>
+
+            <section class="stack-group" aria-labelledby="stackBackend">
+              <h3 id="stackBackend" class="stack-group__title">Backend and Windows integration</h3>
+              <ul class="stack-items">
+                <li><span class="stack-name">Rust <b>2021 edition</b></span><span class="stack-role">Every system call. No garbage collector between you and a memory measurement.</span></li>
+                <li><span class="stack-name">windows-sys <b>0.61</b></span><span class="stack-role">Fifteen Win32 feature gates, used directly — there is no third-party memory-cleaning library underneath.</span></li>
+                <li><span class="stack-name">GlobalMemoryStatusEx · K32GetPerformanceInfo</span><span class="stack-role">Total, used, available, cached, committed and the commit limit.</span></li>
+                <li><span class="stack-name">NtQuerySystemInformation · NtSetSystemInformation</span><span class="stack-role">Memory-list contents and the system-wide purge operations.</span></li>
+                <li><span class="stack-name">K32EmptyWorkingSet · K32GetProcessMemoryInfo</span><span class="stack-role">Trimming one process's working set, and reading what each process holds.</span></li>
+                <li><span class="stack-name">SetSystemFileCacheSize · FlushFileBuffers</span><span class="stack-role">The file-cache operations, both marked disruptive in the interface.</span></li>
+                <li><span class="stack-name">AdjustTokenPrivileges</span><span class="stack-role">Enables SeProfileSingleProcess, SeIncreaseQuota and SeDebug for the operations that require them.</span></li>
+                <li><span class="stack-name">RegEnumValueW · StartupApproved</span><span class="stack-role">Reads both Run keys and both Startup folders; the same enable/disable flag Windows itself writes.</span></li>
+                <li><span class="stack-name">RegisterHotKey · GetMessageW</span><span class="stack-role">Global shortcuts on a dedicated listener thread that is shut down explicitly on exit.</span></li>
+              </ul>
+            </section>
+
+            <section class="stack-group" aria-labelledby="stackData">
+              <h3 id="stackData" class="stack-group__title">Data and storage</h3>
+              <ul class="stack-items">
+                <li><span class="stack-name">serde · serde_json</span><span class="stack-role">Serialises settings, history and the diagnostics export as readable JSON.</span></li>
+                <li><span class="stack-name">settings.json</span><span class="stack-role">Preferences, in <code>%APPDATA%\WindowsMemoryCleanerNG</code>; every write is validated and rolled back if rejected.</span></li>
+                <li><span class="stack-name">history.json</span><span class="stack-role">Past runs with their trigger, duration and per-operation results.</span></li>
+                <li><span class="stack-name">application.log</span><span class="stack-role">Diagnostics, rotated at 2 MB, redacted before each line is written.</span></li>
+                <li><span class="stack-name">log crate</span><span class="stack-role">Level-filtered logging (error to debug) through a custom writer.</span></li>
+              </ul>
+            </section>
+
+            <section class="stack-group" aria-labelledby="stackBuild">
+              <h3 id="stackBuild" class="stack-group__title">Build and packaging</h3>
+              <ul class="stack-items">
+                <li><span class="stack-name">pnpm</span><span class="stack-role">Frontend package manager and scripts.</span></li>
+                <li><span class="stack-name">cargo · rustc</span><span class="stack-role">Compiles the backend for <code>x86_64-pc-windows-msvc</code>.</span></li>
+                <li><span class="stack-name">tauri CLI 2.12</span><span class="stack-role">Drives the build, bundles the frontend and produces both artefacts.</span></li>
+                <li><span class="stack-name">NSIS</span><span class="stack-role">Produces the per-user installer; the portable path is the raw executable.</span></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
       <!-- ================= HOW IT WORKS ================= -->
       <section class="section" id="how" aria-labelledby="howTitle">
         <div class="wrap">
-          <span class="section-numeral" aria-hidden="true">03</span>
+          <span class="section-numeral" aria-hidden="true">07</span>
           <div class="section-head">
             <span class="eyebrow">How it works</span>
             <h2 id="howTitle">From download to a number you trust, in seven steps</h2>
@@ -715,7 +1015,7 @@
       <!-- ================= SAFETY ================= -->
       <section class="section" id="safety" aria-labelledby="safetyTitle">
         <div class="wrap">
-          <span class="section-numeral" aria-hidden="true">04</span>
+          <span class="section-numeral" aria-hidden="true">09</span>
           <div class="section-head">
             <span class="eyebrow">Safety &amp; transparency</span>
             <h2 id="safetyTitle">The list of things it will not do is longer than the list of things it will</h2>
@@ -787,10 +1087,65 @@
         </div>
       </section>
 
+      <!-- ================= TRANSPARENCY ================= -->
+      <section class="section" id="transparency" aria-labelledby="privTitle">
+        <div class="wrap">
+          <span class="section-numeral" aria-hidden="true">10</span>
+          <div class="section-head">
+            <span class="eyebrow">Privacy</span>
+            <h2 id="privTitle">What leaves this computer: nothing</h2>
+            <p>
+              This is a statement about the desktop application, and it is verifiable rather than
+              aspirational: the published executable imports no network library at all — no WinHTTP, no
+              WinINet, no DNS client, no socket API. Everything it writes stays in one folder you can
+              read.
+            </p>
+          </div>
+
+          <div class="safety">
+            <div class="safety__col safety__col--does">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                Stored locally, nothing else
+              </h3>
+              <ul>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg><code>settings.json</code> — preferences and exclusions</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg><code>history.json</code> — past runs and their results</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg><code>logs\application.log</code> — diagnostics, 2 MB cap</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>No network library is linked into the executable: no WinHTTP, WinINet, DNS or socket import</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>Logs and exports are redacted before writing: profile paths become <code>%USERPROFILE%</code>, the machine and account names become placeholders</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg>The window shows “This device” and “Current user” until you opt in</li>
+              </ul>
+            </div>
+
+            <div class="safety__col safety__col--does-not">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>
+                Never sent anywhere
+              </h3>
+              <ul>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>No telemetry and no analytics</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>No crash reporting and no update check</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>No account, no licence server, no cloud sync</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>No API keys, tokens or credentials — the binary contains none</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" /></svg>No MAC address, serial number, product key or recovery key is read, stored or displayed</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="sub-lede">
+            To remove everything the application has stored, close it and delete
+            <code>%APPDATA%\WindowsMemoryCleanerNG</code>. The website has its own policy — it is
+            hosted by GitHub Pages and sets no cookies, runs no analytics and loads no third-party
+            scripts. The full detail is in the <a href="privacy.html">privacy policy</a>.
+          </p>
+        </div>
+      </section>
+
       <!-- ================= GALLERY ================= -->
       <section class="section" id="gallery" aria-labelledby="galleryTitle">
         <div class="wrap">
-          <span class="section-numeral" aria-hidden="true">05</span>
+          <span class="section-numeral" aria-hidden="true">11</span>
           <div class="section-head">
             <span class="eyebrow">Screenshots</span>
             <h2 id="galleryTitle">Every page, as it actually looks</h2>
@@ -855,7 +1210,7 @@
       <!-- ================= DOWNLOAD ================= -->
       <section class="section" id="download" aria-labelledby="downloadTitle">
         <div class="wrap">
-          <span class="section-numeral" aria-hidden="true">06</span>
+          <span class="section-numeral" aria-hidden="true">12</span>
           <div class="download">
             <div class="download__inner">
               <div>
@@ -955,6 +1310,106 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ================= ACKNOWLEDGMENT ================= -->
+      <section class="section" id="thanks" aria-labelledby="thanksTitle">
+        <div class="wrap wrap--narrow">
+          <div class="section-head">
+            <span class="eyebrow">Credit</span>
+            <h2 id="thanksTitle">Standing on the shoulders of great work</h2>
+          </div>
+
+          <blockquote class="quote">
+            <p>
+              Every meaningful improvement begins with curiosity and inspiration.
+            </p>
+            <p>
+              The original WinMemoryCleaner project by <strong>Igor Mundstein</strong> introduced me to
+              practical Windows memory-management mechanisms and encouraged me to investigate how memory
+              optimisation could be implemented more effectively.
+            </p>
+            <p>
+              During my own usage and experimentation I identified areas where I wanted to improve
+              responsiveness, application behaviour and the overall user experience. That exploration
+              eventually led to Windows Memory Cleaner — Next Generation.
+            </p>
+            <p>
+              I sincerely appreciate Igor Mundstein's work and the contribution he has made to the
+              Windows developer community.
+            </p>
+            <p class="quote__thanks">Thank you for building the foundation that inspired this journey.</p>
+          </blockquote>
+
+          <div class="credit-links">
+            <a class="btn btn--ghost" href="https://github.com/IgorMundstein/WinMemoryCleaner" target="_blank" rel="noopener noreferrer">
+              Original project — IgorMundstein/WinMemoryCleaner
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng" target="_blank" rel="noopener noreferrer">
+              This project
+            </a>
+          </div>
+
+          <p class="sub-lede">
+            The original is licensed GPL-3.0-or-later. This project is an independent implementation: no
+            code, branding, documentation or interface assets were copied from it, so no GPL-covered
+            material is redistributed here. The provenance is recorded in the
+            <a href="license.html">licence and credits page</a>, and Igor Mundstein is credited there and
+            in the repository's <code>docs/CREDITS.md</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= COMMUNITY ================= -->
+      <section class="section" id="community" aria-labelledby="communityTitle">
+        <div class="wrap">
+          <span class="eyebrow">Community</span>
+          <h2 id="communityTitle" class="community-title">Built to evolve. Open to collaboration.</h2>
+          <p class="community-lede">
+            To Igor Mundstein and the original WinMemoryCleaner community: thank you for the work that
+            inspired this project. I would genuinely welcome the opportunity to connect, exchange ideas
+            and explore possible collaboration — and I welcome developers who are interested in
+            contributing to the next generation of Windows memory-management tools.
+          </p>
+
+          <div class="community-grid">
+            <article class="community-card">
+              <h3>Talk about the engineering</h3>
+              <p>
+                Disagreements about working sets, standby lists or measurement methodology are the
+                useful kind of feedback. Open an issue on the repository and make the argument with
+                numbers.
+              </p>
+              <a class="evo-link" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/issues" target="_blank" rel="noopener noreferrer">Open an issue</a>
+            </article>
+
+            <article class="community-card">
+              <h3>Report a bug or a security issue</h3>
+              <p>
+                Bugs belong in the public issue tracker with the version, the page and what you expected.
+                Security problems go through the private route in <code>SECURITY.md</code> instead —
+                please do not open a public issue for those.
+              </p>
+              <a class="evo-link" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer">Security policy</a>
+            </article>
+
+            <article class="community-card">
+              <h3>Contributing code — the honest state</h3>
+              <p>
+                The project is proprietary, not open source, so there is no open pull-request process
+                today. Feedback, bug reports and technical discussion are welcome and do influence the
+                roadmap. If the licensing model changes, that will be announced in the repository rather
+                than promised here.
+              </p>
+              <a class="evo-link" href="https://github.com/kabaliGamer-Dev2/windows-memory-cleaner-ng/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution policy</a>
+            </article>
+          </div>
+
+          <p class="evo-disclaimer">
+            Nothing on this page implies that Igor Mundstein or the original community has joined,
+            endorsed or participated in this project. The invitation is an invitation, not a claim.
+          </p>
         </div>
       </section>
 

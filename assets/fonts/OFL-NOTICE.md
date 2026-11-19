@@ -30,3 +30,15 @@ offline users.
 the application remains fully legible if the bundled files are ever missing.
 Characters outside the Latin subsets — including CJK — fall through to Windows
 font linking automatically.
+
+---
+
+## JetBrains Mono
+
+The monospaced figures, paths and checksums on this website are set in
+**JetBrains Mono**, copyright JetBrains s.r.o., licensed under the
+[SIL Open Font License 1.1](https://openfontlicense.org/).
+
+The two `.woff2` files in this folder (`jetbrains-mono-latin.woff2` and
+`jetbrains-mono-latin-ext.woff2`) are the latin and latin-ext subsets served from
+this domain. No request is made to a third-party font service.

@@ -81,6 +81,6 @@ contrast checked against the palette.
 
 ## Licence
 
-The website content is copyright © 2026 Kabbali Gamer, all rights reserved. The
+The website content is copyright © 2026 Kabali Gamer, all rights reserved. The
 DM Sans font is licensed under the SIL Open Font License 1.1 — see
 `assets/fonts/OFL-NOTICE.md`.

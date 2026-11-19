@@ -31,6 +31,16 @@
   ]
 }
     </script>
+
+    <!-- Google Analytics 4. Disclosed in privacy.html; download and GitHub
+         clicks are sent as events so the effect of search traffic is visible. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV66KMF93S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-ZV66KMF93S", { anonymize_ip: true });
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -83,17 +93,27 @@
         </p>
 
         <h3>Cookies</h3>
-        <p>This site sets no cookies.</p>
+        <p>
+          The site itself sets no cookies. Google Analytics sets <code>_ga</code> and
+          <code>_ga_*</code> to separate sessions; they expire after two years and are the only
+          cookies present. Clearing them does not change the site's behaviour.
+        </p>
 
         <h3>Analytics</h3>
         <p>
-          There is no analytics of any kind: no Google Analytics, no self-hosted analytics, no counting
-          pixels, no session recording. I do not know how many people visit or which pages they read.
+          The site uses <strong>Google Analytics 4</strong> (measurement ID
+          <code>G-ZV66KMF93S</code>) to count page views and to record two events: clicks on
+          the download buttons and clicks through to the GitHub repository. That is the whole
+          of it — no advertising, no remarketing, no cross-site profiling, and IP
+          anonymisation is enabled. The data is processed by Google under the
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google
+          Privacy Policy</a>. A content blocker does not break any part of the site.
         </p>
 
         <h3>Third-party requests</h3>
         <p>
-          The site loads no third-party scripts, stylesheets or fonts. The typeface is served from this
+          Fonts and screenshots are served from this domain. The only third-party script is the
+          Google Analytics tag described above; there is nothing else. The typeface is served from this
           domain as a <code>.woff2</code> file, so no request goes to a font CDN and your IP address is
           not shared with one. The only external destinations are links you choose to follow — to GitHub,
           for example — and those are governed by their own policies.
